@@ -1,0 +1,113 @@
+#inherit_from:
+#  - https://raw.githubusercontent.com/bbatsov/rubocop/master/config/default.yml
+
+#require:
+# - ./rubocop/cop/debug/view_debug.rb
+
+# Common configuration.
+AllCops:
+  # Include common Ruby source files.
+  # Include:
+  #   - '**/*.builder'
+  #   - '**/*.fcgi'
+  #   - '**/*.gemspec'
+  #   - '**/*.god'
+  #   - '**/*.jb'
+  #   - '**/*.jbuilder'
+  #   - '**/*.mspec'
+  #   - '**/*.opal'
+  #   - '**/*.pluginspec'
+  #   - '**/*.podspec'
+  #   - '**/*.rabl'
+  #   - '**/*.rake'
+  #   - '**/*.rbuild'
+  #   - '**/*.rbw'
+  #   - '**/*.rbx'
+  #   - '**/*.ru'
+  #   - '**/*.ruby'
+  #   - '**/*.spec'
+  #   - '**/*.thor'
+  #   - '**/*.watchr'
+  #   - '**/.irbrc'
+  #   - '**/.pryrc'
+  #   - '**/buildfile'
+  #   - '**/config.ru'
+  #   - '**/Appraisals'
+  #   - '**/Berksfile'
+  #   - '**/Brewfile'
+  #   - '**/Buildfile'
+  #   - '**/Capfile'
+  #   - '**/Cheffile'
+  #   - '**/Dangerfile'
+  #   - '**/Deliverfile'
+  #   - '**/Fastfile'
+  #   - '**/*Fastfile'
+  #   - '**/Gemfile'
+  #   - '**/Guardfile'
+  #   - '**/Jarfile'
+  #   - '**/Mavenfile'
+  #   - '**/Podfile'
+  #   - '**/Puppetfile'
+  #   - '**/Rakefile'
+  #   - '**/Snapfile'
+  #   - '**/Thorfile'
+  #   - '**/Vagabondfile'
+  #   - '**/Vagrantfile'
+  #   - 'db/migrate/*'
+  # Exclude:
+  TargetRubyVersion: 2.5
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/Documentation:
+  Enabled: false
+
+Style/RescueModifier:
+  Enabled: false
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Layout/IndentationWidth:
+  Width: 2
+  IgnoredPatterns: []
+
+Layout/IndentAssignment:
+  IndentationWidth: ~
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+# Metrics/MethodLength:
+#   Max: 20
+#   Exclude:
+#     - 'spec/**/*.rb'
+
+# Metrics/AbcSize:
+#   Enabled: false
+
+# Metrics/ClassLength:
+#   Enabled: false
+
+# Metrics/ModuleLength:
+#   Exclude:
+#     - 'spec/**/*.rb'
+
+# Metrics/CyclomaticComplexity:
+#   Max: 10
+
+# Metrics/PerceivedComplexity:
+#   Max: 10
+
+# Naming/PredicateName:
+#   NamePrefixBlacklist:
+#     - is_
+#     - have_
