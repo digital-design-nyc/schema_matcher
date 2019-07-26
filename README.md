@@ -31,35 +31,35 @@ require "schema_matcher/rspec"
 1) Write your schema
 ```ruby
 SchemaMatcher.build_schema do
-	define :user do
-	  attribute :id, type: :number
-	  attribute :first_name #it uses type string by default
-	  attribute :last_name
-	  attribute :avatar, nullable: true
-	  attribute :disabled, type: :boolean
-	  attribute :role, optional: true
-	  attribute :posts, array: true, ref: :post
-	end
+  define :user do
+    attribute :id, type: :number
+    attribute :first_name #it uses type string by default
+    attribute :last_name
+    attribute :avatar, nullable: true
+    attribute :disabled, type: :boolean
+    attribute :role, optional: true
+    attribute :posts, array: true, ref: :post
+  end
 
-	define :post do
-	  attribute :id, type: :number
-	  attribute :content
-	  attribute :author do
-	    attribute :id, type: :number
-	    attribute :first_name
-	    attribute :last_name
-	  end
-	end
+  define :post do
+    attribute :id, type: :number
+    attribute :content
+    attribute :author do
+      attribute :id, type: :number
+      attribute :first_name
+      attribute :last_name
+    end
+  end
 end
 ```
 
 2) Check responses:
 ```ruby
 RSpec.describe 'Users' do
-  let(:json_response) { JSON.parse(response.body) }
+ let(:json_response) { JSON.parse(response.body) }
  
   it 'returns user' do
-	  get '/users/1'
+    get '/users/1'
 	  expect(json_response).to match_json_schema(:user)
   end
 
