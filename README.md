@@ -60,7 +60,7 @@ RSpec.describe 'Users' do
  
   it 'returns user' do
     get '/users/1'
-	  expect(json_response).to match_json_schema(:user)
+    expect(json_response).to match_json_schema(:user)
   end
 
   it 'returns a few users' do
