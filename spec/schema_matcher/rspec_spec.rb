@@ -16,6 +16,16 @@ RSpec.describe 'RspecMatchers' do
     end
   end
 
+  context 'when payload is array' do
+    let(:payload) do
+      [attributes_for(:user), attributes_for(:user)].map(&:stringify_keys)
+    end
+
+    it 'pass validation' do
+      expect(payload).to match_json_schema(:user, array: true)
+    end
+  end
+
   context 'when payload has extra fields' do
     let(:payload) { user_attributes.merge('some_other_field' => true) }
 

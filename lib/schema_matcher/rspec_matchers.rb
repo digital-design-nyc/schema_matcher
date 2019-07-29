@@ -4,13 +4,14 @@ require 'schema_matcher/assertion'
 module SchemaMatcher
   module RspecMatchers
     class JsonSchemaMatcher
-      attr_reader :schema_name, :payload, :assertion
+      attr_reader :schema_name, :payload, :assertion, :options
 
-      def initialize(schema_name)
+      def initialize(schema_name, options = {})
         @schema_name = schema_name
+        @options = options
       end
 
-      def matches?(payload, options = {})
+      def matches?(payload)
         @payload = payload
         @assertion = SchemaMatcher::Assertion.new(schema_name, payload, options)
         @assertion.valid?
@@ -63,8 +64,8 @@ module SchemaMatcher
       end
     end
 
-    def match_json_schema(schema)
-      JsonSchemaMatcher.new(schema)
+    def match_json_schema(schema, options = {})
+      JsonSchemaMatcher.new(schema, options)
     end
   end
 end
