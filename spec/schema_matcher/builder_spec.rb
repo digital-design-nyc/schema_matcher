@@ -18,7 +18,7 @@ RSpec.describe SchemaMatcher::Builder do
 
   describe '#to_schema' do
     it 'returns schema' do
-      expect(builder.to_schema).to match(
+      expect(builder.to_schema).to include(
         user: builder.schema[:user].to_schema,
         post: builder.schema[:post].to_schema
       )

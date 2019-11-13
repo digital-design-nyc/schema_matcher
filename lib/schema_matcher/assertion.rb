@@ -23,16 +23,24 @@ module SchemaMatcher
     attr_reader :payload, :schema_name, :last_error_message, :options
 
     def schema
-      SchemaMatcher
-        .schema[schema_name]
+      entity_schema =
+        if array?
+          { 'type' => 'array', 'items' => SchemaMatcher.schema[schema_name] }
+        else
+          SchemaMatcher.schema[schema_name]
+        end
+      entity_schema
         .merge('$schema' => SchemaMatcher::ExtendedSchema::SCHEMA_URI)
         .merge!(definitions: SchemaMatcher.schema)
     end
 
+    def array?
+      options.key?(:array) ? options[:array] : payload.is_a?(Array)
+    end
+
     def validator_options
       {
-        strict: true,
-        list: options.key?(:array) ? options[:array] : payload.is_a?(Array)
+        strict: true
       }
     end
   end

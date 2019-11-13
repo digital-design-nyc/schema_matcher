@@ -56,11 +56,36 @@ RSpec.describe 'RspecMatchers' do
   end
 
   describe 'with referrals' do
-    let(:post_attributes) { attributes_for(:post) }
-    let(:payload) { post_attributes }
+    let(:payload) { [attributes_for(:post)] }
 
     it 'pass validation' do
-      expect(payload).to match_json_schema(:post)
+      expect(payload).to match_json_schema(:post, array: true)
+    end
+
+    context 'referal attribute is blank' do
+      let(:payload) { [attributes_for(:post, 'author' => nil)] }
+
+      it 'pass validation' do
+        expect(payload).to match_json_schema(:post_with_nullable_author, array: true)
+      end
+    end
+  end
+
+  describe 'with nested' do
+    context 'when nil' do
+      let(:payload) { [attributes_for(:post, 'author' => nil)] }
+
+      it 'passes validation' do
+        expect(payload).to match_json_schema(:post_with_optional_author, array: true)
+      end
+    end
+
+    context 'when present' do
+      let(:payload) { attributes_for(:post) }
+
+      it 'passes validation' do
+        expect(payload).to match_json_schema(:post_with_optional_author)
+      end
     end
   end
 end

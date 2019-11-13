@@ -1,6 +1,7 @@
 require 'ffaker'
 require_relative './models/user'
 require_relative './models/post'
+require_relative './models/comment'
 
 FactoryBot.define do
   factory :user do
@@ -18,5 +19,12 @@ FactoryBot.define do
     id { rand(100) }
     content { FFaker::Lorem.sentence }
     author { attributes_for(:user).stringify_keys }
+    comments { Array.new(2) { attributes_for(:comment) } }
+  end
+
+  factory :comment do
+    skip_create
+    id { rand(100) }
+    content { FFaker::Lorem.sentence }
   end
 end
